@@ -32,8 +32,9 @@ public class PostRepository {
             long newPostID = postExistID;
             if (postExistID == 0) {
                 newPostID = postID.incrementAndGet();
-                while (!posts.containsKey(newPostID))
+                while (posts.containsKey(newPostID)) {
                     newPostID = postID.incrementAndGet();
+                }
             }
             post.setId(newPostID);
             posts.put(newPostID, post);
